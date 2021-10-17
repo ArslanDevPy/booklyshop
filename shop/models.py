@@ -66,6 +66,13 @@ class Author(BaseModel):
         verbose_name_plural = _(" Authors")
 
 
+class Tag(models.Model):
+    title = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.title
+
+
 class Book(BaseModel):
     title = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
@@ -76,6 +83,7 @@ class Book(BaseModel):
     discount = models.FloatField(default=0, null=True)
     noPage = models.IntegerField(default=0)
     description = models.TextField()
+    tag = models.ManyToManyField(to=Tag,related_name='tag_rel')
     img = models.ImageField(upload_to='shop/book/', default='shop/book/book.png')
 
     def save(self, *args, **kwargs):
@@ -84,6 +92,12 @@ class Book(BaseModel):
 
     def __str__(self):
         return f"{self.title} -- {self.author.title}"
+
+    def get_tag(self):
+        return self.tag
+
+    def get_sale_price(self):
+        return float(self.price)-float(self.discount)
 
     class Meta:
         db_table = "book"

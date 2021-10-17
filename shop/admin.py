@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shop.models import Book, Author, Category, OrderDetails, Order
+from shop.models import Book, Author, Category, OrderDetails, Order, Tag
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.utils import timezone
@@ -15,6 +15,9 @@ def status_active(modeladmin, request, queryset):
 def status_deactive(modeladmin, request, queryset):
     queryset.update(status=False, update_at=timezone.now())
     messages.success(request, "Status Change")
+
+
+admin.site.register(Tag)
 
 
 @admin.register(Author)
@@ -44,7 +47,7 @@ class BookAdmin(admin.ModelAdmin):
     readonly_fields = ('create_at', 'update_at')
     list_filter = ['status']
     fieldsets = (
-        (_("Book Information"), {'fields': ('title', 'author', 'category', 'ISBN', 'description')}),
+        (_("Book Information"), {'fields': ('title', 'author', 'category', 'ISBN', 'description','tag')}),
         (_('Book Publish'), {'fields': ('year',)}),
         (_('Important Part'), {'fields': ('price', 'discount', 'noPage'), }),
         (_('Image'), {'fields': ('img',), }),

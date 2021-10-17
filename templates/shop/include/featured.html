@@ -19,9 +19,9 @@
                             <img src="{{ book.img.url }}" alt="">
                         </div>
                         <div class="content">
-                            <h3>featured books</h3>
-                            <div class="price">$15.99 <span>$20.99</span></div>
-                            <a href="#" class="btn">add to cart</a>
+                            <h3>{{ book.title }}</h3>
+                            <div class="price">Rs:{{ book.get_sale_price }} <span>Rs:{{ book.discount }}</span></div>
+                            <a href="{% url 'cart' book.slug %}" class="btn">add to cart</a>
                         </div>
                     </div>
                 {% endfor %}

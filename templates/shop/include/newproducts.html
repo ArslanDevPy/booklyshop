@@ -12,11 +12,11 @@
 
                     <a href="#" class="swiper-slide box">
                         <div class="image">
-                            <img src="{% static 'image/book-1.png' %}" alt="">
+                            <img src="{{ newbook.img.url }}" alt="">
                         </div>
                         <div class="content">
-                            <h3>new arrivals</h3>
-                            <div class="price">$15.99 <span>$20.99</span></div>
+                            <h3>{{ newbook.title }}</h3>
+                            <div class="price">Rs:{{newbook.get_sale_price}} <span>Rs:{{ newbook.discount }}</span></div>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -43,7 +43,7 @@
                             <img src="{{ newbook.img.url }}" alt="">
                         </div>
                         <div class="content">
-                            <h3>new arrivals</h3>
+                            <h3>{{ newbook.title }}</h3>
                             <div class="price">$15.99 <span>$20.99</span></div>
                             <div class="stars">
                                 <i class="fas fa-star"></i>
@@ -56,7 +56,5 @@
                     </a>
                 {% endfor %}
             </div>
-
         </div>
-
     </section>

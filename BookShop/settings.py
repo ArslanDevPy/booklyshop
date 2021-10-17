@@ -12,7 +12,7 @@ DEBUG = True
 # else:
 SECRET_KEY = os.environ['SECRET_KEY']
 
-ALLOWED_HOSTS = ['booklyshop.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -50,6 +50,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.category',
             ],
         },
     },
